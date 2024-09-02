@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'pages/home/home.dart';
+import 'package:flutter_layout/pages/counter/counter_page.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -10,13 +9,11 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      // locale: const Locale('fa', 'IR'),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Home(),
+      home: const CounterPage(),
     );
   }
 }
-

@@ -44,13 +44,32 @@ class Products extends StatelessWidget {
   Widget _products() => ListView.separated(
         scrollDirection: Axis.horizontal,
         itemCount: 15,
-        itemBuilder: (_, __) => Container(
-          margin: const EdgeInsets.only(right: 8),
-          width: 100,
-          height: 100,
-          decoration: BoxDecoration(
-              color: Colors.yellow, borderRadius: BorderRadius.circular(16)),
-        ),
+        itemBuilder: (_, __) => const MyContainer(),
         separatorBuilder: (_, __) => const SizedBox(width: 8),
+      );
+}
+
+class MyContainer extends StatefulWidget {
+  const MyContainer({super.key});
+
+  @override
+  State<MyContainer> createState() => _MyContainerState();
+}
+
+class _MyContainerState extends State<MyContainer> {
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    print('dispose');
+  }
+
+  @override
+  Widget build(BuildContext context) => Container(
+        margin: const EdgeInsets.only(right: 8),
+        width: 100,
+        height: 100,
+        decoration: BoxDecoration(
+            color: Colors.yellow, borderRadius: BorderRadius.circular(16)),
       );
 }
