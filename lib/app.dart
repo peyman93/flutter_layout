@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_layout/pages/error_practice/error_practice_page.dart';
+
+import 'pages/my_todos/my_todos_page.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -13,7 +14,7 @@ class App extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const ErrorPracticePage(),
+      home: const MyTodosPage(),
     );
   }
 }

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import '../shared/api_state.dart';
 import 'models/user_model.dart';
 
 class ErrorPracticePage extends StatefulWidget {
@@ -14,7 +15,7 @@ class ErrorPracticePage extends StatefulWidget {
 
 class _ErrorPracticePageState extends State<ErrorPracticePage> {
   List<UserModel>? _userList = null;
-  _State _state = _State.loading;
+  ApiState _state = ApiState.loading;
   String? _error = null;
 
   @override
@@ -29,11 +30,11 @@ class _ErrorPracticePageState extends State<ErrorPracticePage> {
       );
 
   Widget _body() {
-    if (_state == _State.loading) {
+    if (_state == ApiState.loading) {
       return const Text('Loading...');
     }
 
-    if (_state == _State.success) {
+    if (_state == ApiState.success) {
       return ListView.separated(
         itemBuilder: (_, index) => Text(_userList![index].name),
         separatorBuilder: (_, __) => const Divider(),
@@ -53,7 +54,7 @@ class _ErrorPracticePageState extends State<ErrorPracticePage> {
   }
 
   void _fetchData() async {
-    setState(() => _state = _State.loading);
+    setState(() => _state = ApiState.loading);
     try {
       await Future.delayed(const Duration(seconds: 2));
 
@@ -70,11 +71,11 @@ class _ErrorPracticePageState extends State<ErrorPracticePage> {
             .map((e) => UserModel.fromJson(e as Map<String, dynamic>))
             .toList();
 
-        setState(() => _state = _State.success);
+        setState(() => _state = ApiState.success);
       } else {
         setState(() {
           _error = response.statusCode.toString();
-          _state = _State.retry;
+          _state = ApiState.retry;
         });
       }
 
@@ -83,10 +84,9 @@ class _ErrorPracticePageState extends State<ErrorPracticePage> {
     } catch (error) {
       setState(() {
         _error = error.toString();
-        _state = _State.retry;
+        _state = ApiState.retry;
       });
     }
   }
 }
 
-enum _State { loading, success, retry }
