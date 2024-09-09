@@ -9,11 +9,11 @@ class MyLayout extends StatelessWidget {
   Widget build(BuildContext context) => LayoutBuilder(
         builder: (context, constraints) => Stack(
           children: [
-            Text(
-              "Width: ${constraints.minWidth} --> ${constraints.maxWidth}\n"
-              "Height: ${constraints.minHeight} --> ${constraints.maxHeight}",
-            ),
             child,
+            Text(
+              "W: ${constraints.minWidth} --> ${constraints.maxWidth}\n"
+              "H: ${constraints.minHeight} --> ${constraints.maxHeight}",
+            ),
           ],
         ),
       );
